@@ -1,0 +1,177 @@
+.page-addpres {
+    .ycKey {
+        padding-left: 15px;
+        width: 85%;
+    }
+    .search-item {
+        background: #fff;
+        border: 1px solid #ae7649;
+        position: relative;
+
+        input {
+            background: #fff;
+            width: 80%;
+        }
+    }
+
+    .medical-list {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        z-index: 9999;
+        width: 100%;
+        background-color: #EEE;
+        box-sizing: border-box;
+        border: 1px solid #ae7649;
+        overflow-x: hidden;
+        overflow-y: scroll;
+
+        .item {
+            padding: 5px;
+            white-space: normal;
+        }
+    }
+
+  .sureModal{
+  	   .item-input {
+    padding: 6px 0 5px 5px;
+
+}
+    .input-label{
+    	  font-size: 13px;
+    }
+  }
+    dl {
+        display: block;
+        min-height: 30px;
+        padding: 5px 0;
+        overflow: hidden;
+        margin: 0 auto;
+        width: 160px;
+    }
+
+    dl dt {
+        float: left;
+        width: 36px;
+        font-size: 14px;
+        line-height: 30px;
+        color: #333;
+    }
+
+    dl dd {
+        margin-left: 5px;
+    }
+
+    dl dd a {
+        display: inline-block;
+        height: 25px;
+        line-height: 25px;
+        color: #fff;
+        margin-right: 10px;
+        padding: 0 10px;
+        border: 1px solid #d6d6d6;
+        border-radius: 3px;
+    }
+
+    dl.ck dd a {
+        margin: 0 10px 6px 0;
+    }
+
+    dl.qty a {
+        float: left;
+        margin: 0;
+        font-size: 14px;
+        border: 1px solid #ae7649;
+        background: #ae7649;
+        border-radius: 0;
+    }
+
+    dl.qty a.minus {
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
+
+    dl.qty a.plus {
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+    dl.qty input {
+        float: left;
+        width: 40px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border: 1px solid #ae7649;
+        border-left: none;
+        border-right: none;
+        outline: none;
+        color: #ae7649
+    }
+
+
+    &.medicalTpl {
+        .button {
+            padding: 0;
+        }
+
+        .weight {
+            font-size: 16px;
+            color: #ae7649 !important;
+        }
+    }
+
+    button.empty {
+        min-height: 10px;
+        line-height: 20px;
+    }
+
+    .popup-container .popup{
+    	width: 90%;
+    }
+
+    .cf-item {
+        margin: 10px 0px;
+        background-color: white;
+        height: auto;
+        display: block;
+        overflow: auto;
+        border: solid 1px #ae7649;
+        // border-radius: 4px;
+
+        .cf-head {
+            background-color: #ae7649;
+            color: white;
+            padding-left: 10px;
+            height: 25px;
+            line-height: 25px;
+            width: 100%;
+        }
+
+        .cf-body {
+            &.row {
+                width: 95%;
+                margin: 0px auto;
+                margin-bottom: 10px;
+                border-bottom: 1px solid #999;
+            }
+
+            .col {
+                width: 25%;
+                text-align: center;
+
+                select {
+                    border-radius: 3px;
+                }
+
+                button {
+                    min-height: 8px;
+                    line-height: 17px;
+                }
+            }
+        }
+    }
+}
+.cfPopup .popup{
+	width: 95%;
+}

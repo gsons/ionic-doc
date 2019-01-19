@@ -1,0 +1,116 @@
+<ion-header-bar class="has-tabs-top bar-ligth item-input-inset item-select">
+    <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item" style="">
+        <i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span>
+    </button>
+    <select ng-model="presType" style="max-width: 100%;">
+        <!-- <option value="09">增 加 处 方&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;【丹•散•丸】</option>
+        <option value="10">增 加 处 方&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;【膏 方】</option> -->
+        <option value="05">增 加 处 方&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;【中药饮片】</option>
+    </select>
+</ion-header-bar>
+<ion-content delegate-handle="addpres-scroll" class="page-addpres has-header">
+    <div class="padding cfList">
+        <div class="list">
+            <label class="item-input-wrapper search-item">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="search" ng-change="searchMedical()" ng-focus="clearInput()" ng-blur="clearInput()" ng-click="clearInput()" placeholder="输入药材拼音首字母/中文名搜索"
+                    ng-model="$parent.medicalNameKey">
+                <i class="icon ion-close-circled positive ng-hide" ng-cilck="clearInput()" ng-show="medicalNameKey"></i>
+            </label>
+            <div class="cf-item">
+                <div class="cf-head">已选饮片</div>
+                <div class="row cf-body" ng-repeat="vo in medicalList1 track by $index">
+                    <div class="col col-1"> {{vo.chargeName}}</div>
+                    <div class="col col-2">
+                        <button class="button button-outline button-positive  button-small" on-tap="addOrUpdateCF(vo,$index)">{{vo.dosage}}g</button>
+                    </div>
+                    <div class="col col-3">
+                        <select ng-model="comment" type="text" ng-change="selectMethod($index,comment)">
+                            <option value="" selected="selected">用法</option>
+                            <option value="{{vo}}" ng-repeat="vo in comments">
+                                {{vo}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col col-4">
+                        <button class="button button-outline button-assertive button-small" on-tap="deleteItem($index)">删除</button>
+                    </div>
+                </div>
+                <div class="padding text-center assertive" ng-show="medicalList1.length==0">
+                    待添加饮片
+                </div>
+            </div>
+            <dl class="qty">
+                <dt>付数:</dt>
+                <dd>
+                    <a class="minus" ng-click="changeQty(-1)">-</a>
+                    <input id="buy-qty" type="text" readonly="" value="{{herbalAmount}}">
+                    <a class="plus" ng-click="changeQty(1)">+</a>
+                </dd>
+            </dl>
+            <div class="item" style="padding:9px">
+                <span>共{{medicalList1.length}}味</span>
+                <span class="assertive">总花费 {{amount}}元</span>
+                <button class="button button-outline button-assertive button-small empty" style="float: right;" on-tap="deleteAllItem()">清空已选饮片</button>
+            </div>
+            <div class="item" style="padding:9px">
+                <button type="submit" class="button button-block button-positive" ng-click="nextStep()">下一步</button>
+            </div>
+        </div>
+    </div>
+    <!-- 饮片搜索结果列表-->
+    <div class="list  medical-list" id="medical-list" ng-show="searchList.length>=0">
+        <div class="item" ng-repeat="vo in searchList" ng-click="choseYc(vo)">
+            <span class="positive">{{vo.chargeName}}&nbsp;&nbsp;</span>
+            <span>{{vo.specification}}&nbsp;&nbsp;</span>
+            <span class="assertive">￥{{vo.origPrice}}</span>
+        </div>
+        <div class="text-center item assertive" ng-if="searchList.length==0">:( 没有相关结果</div>
+    </div>
+</ion-content>
+<!-- 修改/新增饮片  模板-->
+<script id="medicalTpls.html" type="text/ng-template" class="page-addpres">
+    <div class="page-addpres medicalTpl">
+        <div class="text-center">
+            <div class="button-bar bar-stable">
+                 <a class="button button-small" ng-click="addYCNum(-5)">-5</a>
+                <a class="button button-small" ng-click="addYCNum(-1)">-1</a>
+                <a class="button button-small weight positive" >{{$selectedyc.dosage}} g</a>
+                <a class="button button-small" ng-click="addYCNum(1)">+1</a>
+                <a class="button button-small" ng-click="addYCNum(5)">+5</a>
+            </div>
+        </div>
+                        <div class="text-center" style="margin-top: 20px">
+                            <div class="button-bar bar-stable">
+                                <a ng-click="chooseVal(5)" class="button button-small">5g</a>
+                                <a ng-click="chooseVal(10)" class="button button-small">10g</a>
+                                <a ng-click="chooseVal(15)" class="button button-small">15g</a>
+                                <a ng-click="chooseVal(20)" class="button button-small">20g</a>
+                            </div>
+        </div>
+    </div>
+</script>
+<script id="templates/sureModal.html" type="text/ng-template">
+    <form class="sureModal">
+    <div class="list page-addpres">
+        <dl class="qty">
+            <dt>付数:</dt>
+            <dd>
+                <a class="minus" ng-click="$parent.changeQty(-1)">-</a><input id="buy-qty" type="text" readonly="" value="{{herbalAmount}}"><a class="plus" ng-click="$parent.changeQty(1)">+</a>
+            </dd>
+        </dl>
+        <label class="item item-input item-stacked-label" style="background-color: #FFF;">
+            <span class="input-label" style="font-size:13px">处方说明:</span>
+            <textarea ng-model="$parent.presContent" placeholder="处方说明(选填)" style="font-size:13px"></textarea>
+        </label>
+        <label class="item item-input">
+            <span class="input-label"   style="font-size:13px">处方可代煎:</span>
+            <label for="docSetBoil1" class="myRadio">
+                <input name="docSetBoil" type="radio" ng-model="$parent.docSetBoil" value="0" ng-checked='true' id="docSetBoil1"><span style="border-right: 0">是</span></label>
+            <label for="docSetBoil2" class="myRadio">
+                <input name="docSetBoil" type="radio" ng-model="$parent.docSetBoil" value="-1" id="docSetBoil2"><span>否</span></label>
+        </label>
+    </div>
+</form>
+</script>

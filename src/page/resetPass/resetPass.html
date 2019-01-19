@@ -1,0 +1,65 @@
+<style>
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+</style>
+<ion-header-bar>
+    <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item" style=""><i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span></button>
+    <h1 class="title" align-title="center">修改密码</h1>
+</ion-header-bar>
+<ion-content class="ionic-scroll">
+    <form name="forgetForm" novalidate="novalidate" ng-submit="doforget()" class="ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength ng-valid-repeat">
+        <div class="padding text-center">
+            <h2 class="positive">至诚金方</h2>
+            <p class="positive">Health Advisory</p>
+        </div>
+        <div ng-if="forgetForm.accountId.$invalid" class="text-center">
+            <small class="assertive" ng-if="forgetForm.accountId.$error.required">
+                手机号码不可为空
+            </small>
+        </div>
+        <div ng-if="forgetForm.accountId.$invalid" class="text-center">
+            <small class="assertive" ng-if="forgetForm.accountId.$error.minlength">
+                手机号码最少11位数
+            </small>
+        </div>
+        <div ng-if="forgetForm.accountId.$invalid" class="text-center">
+            <small class="assertive" ng-if="forgetForm.accountId.$error.maxlength">
+                手机号码最大11位数
+            </small>
+        </div>
+        <div ng-if="forgetForm.vaildCode.$invalid" class="text-center">
+            <small class="assertive" ng-if="forgetForm.vaildCode.$error.required">
+                验证码不能为空
+            </small>
+        </div>
+        <div ng-if="forgetForm.password.$invalid||forgetForm.pwdconfirm.$invalid" class="text-center">
+            <small class="assertive" ng-if="forgetForm.password.$error.minlength||forgetForm.pwdconfirm.$error.minlength">
+                密码最少6位数
+            </small>
+        </div>
+        <div class="list list-inset">
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper" style="background-color: #FFF">
+                    <input type="text" name="accountId" ng-model="fg.accountId" placeholder="请输入手机号码" required="" ng-minlength="11" ng-maxlength="11">
+                </label>
+                <button class="button button-small button-positive" type="button" ng-click="sendMobileCode(fg)" ng-disabled="btnDisabled||forgetForm.accountId.$error.required||forgetForm.accountId.$error.minlength||forgetForm.accountId.$error.maxlength">
+                    {{timer}}
+                </button>
+            </div>
+            <label class="item item-input">
+                <input type="text" name="recCode" placeholder="请输入验证码" ng-model="fg.recCode" required="">
+            </label>
+            <label class="item item-input">
+                <input type="password" name="password" placeholder="请输入密码" ng-model="fg.password" required="" ng-minlength="6" ng-pattern="/[0-9a-zA-Z!@#_]*/">
+            </label>
+            <label class="item item-input">
+                <input type="password" name="pwdconfirm" placeholder="请再次输入密码" ng-model="fg.pwdconfirm" required="" ng-minlength="6" ng-pattern="/[0-9a-zA-Z!@#_]*/" repeat="password">
+            </label>
+            <div style="margin: 0 10px;">
+                <button ng-disabled="forgetForm.$invalid" class="button button-block button-balanced" type="submit" style="background-color: #ae7649;border-color: #ae7649;" disabled="disabled">提交
+                </button>
+            </div>
+    </form>
+</ion-content>

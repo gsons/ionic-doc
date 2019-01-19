@@ -1,0 +1,31 @@
+.page-docInfo{
+    background-color: #FFF;
+      form .item {
+        border: 0;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        width: 90%;
+        margin:3px auto;
+        padding-left: 0;
+    }
+    .item input[type="text"],input[type="number"],input[type="date"],textarea {
+        background-color: #EEE;
+        padding-left: 10px;
+    }
+    .item span {
+        font-size: 14px;
+    }
+   
+   span.input-label{
+        color: #000;
+        font-weight: bold;
+   }
+
+   .tab-item {
+        color: #ae7649 !important;
+        font-weight: bold;
+    }
+    .item.activated {
+        background-color:#FFF;
+    }
+}

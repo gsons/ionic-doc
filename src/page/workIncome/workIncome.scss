@@ -1,0 +1,64 @@
+.page-workIncome {
+    .vp-select {
+        color: #ae7649 !important;
+        font-size: 16px !important;
+    }
+
+    .vp-list .item {
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .vp-list .item .left {
+        flex: 1;
+    }
+
+    .vp-list .item .right {
+        flex: 1;
+    }
+
+    .vp-list .item span.text-key {
+        font-size: 12px;
+        color: #333;
+    }
+
+    .vp-list .item span.text-value {
+        font-size: 12px;
+        color: red;
+    }
+
+    .vp-list .item span.text-value.date {
+        color: #333;
+    }
+
+    .tab-item {
+        position: relative;
+
+    }
+
+    .vp-tab-year {
+        position: absolute;
+        bottom: -20px;
+        font-size: 10px;
+        left: 14px;
+    }
+
+    .vp-tab {
+        color: #333 !important;
+    }
+
+    .vp-tab.active {
+        color: #ae7649 !important;
+    }
+
+    .vp-tab .year {
+        font-size: 10px;
+        color: #999;
+    }
+
+    .vp-tab.active .year {
+        font-size: 10px;
+        color: #ae7649;
+    }
+}

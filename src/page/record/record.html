@@ -1,0 +1,45 @@
+<ion-header-bar>
+    <button ng-click="$back()" class="button back-button buttons button-clear button-stable  header-item" style="">
+        <i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span>
+    </button>
+    <h1 class="title" align-title="center">就诊记录</h1>
+    <button ng-click="$refresh()" class="button button-stable button-clear">
+        <i class="icon ion-android-refresh"></i>
+    </button>
+</ion-header-bar>
+<ion-content class="page-record" delegate-handle="record-scroll" ng-controller="recordCtrl">
+
+    <div class="list" style="margin-bottom: 1px">
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input type="text" placeholder="输入患者姓名搜索就诊记录" class="key" ng-model="keyword">
+            </label>
+            <button class="button button-small button-positive" ng-click="search();" style="margin-left: 0">
+                搜 索
+            </button>
+        </div>
+    </div>
+    <div class="list">
+        <div class="item item-avatar m-item" href="javascript:;" ng-repeat="vo in orderList" ng-click="goNext(vo)">
+            <!-- <img ion-img ngsrc=""> -->
+            <img ngsrc="{{vo.headimgurl}}" ion-img style="border-radius: 0">
+            <h2>{{vo.binrName}} {{vo.binrSex}} {{vo.binrAge}}</h2>
+            <p>就诊时间:{{vo.reserDate}}</p>
+            <p>
+                <a class="pre-tel" ng-if="vo.patientAccount" href="tel:{{vo.patientAccount}}" ng-click="$event.stopPropagation();">
+                    <i style="font-size: 17px" class="icon ion-ios-telephone"></i>{{vo.patientAccount}}</a>
+            </p>
+            <button ng-if="vo.payStatus==2" class="button button-small btn-status  button-calm button-clear">已退款</button>
+            <button ng-if="vo.payStatus==1" class="button button-small btn-status  button-balanced button-clear">已支付</button>
+            <button ng-if="vo.payStatus==0" class="button button-small btn-status  button-assertive button-clear">未支付</button>
+            <button ng-if="vo.payStatus==-2" class="button button-small btn-status  button-positive button-clear">已取消</button>
+            <button class="button button-small button button-positive btn-chat" ng-click="doChat(vo);$event.stopPropagation();">发起聊天</button>
+        </div>
+    </div>
+    <ion-infinite-scroll ng-if="haveDatas" on-infinite="loadNextPage()" distance="3%">
+    </ion-infinite-scroll>
+    <div ng-if="!haveDatas && orderList.length!=0" class="text-center assertive">
+        没有更多记录了...
+    </div>
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-header-bar>
+    <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item">
+        <i class="icon ion-android-arrow-back"></i>
+    </button>
+    <h1 class="title" align-title="center">我的银行卡</h1>
+</ion-header-bar>
+<ion-content delegate-handle="bankCard-scroll" class="page-bankCard">
+    <div class="list card" ng-if="cardList.length>0">
+        <a  class="card-item item item-icon-left" ng-repeat="vo in cardList" on-hold="delCard(vo)">
+            <i class="icon ion-card"></i>
+            {{vo.bankBranch}} {{vo.account}}
+        </a>
+    </div>
+
+    <div class="padding text-center" ng-if="cardList.length==0">
+        <a  class="assertive" style="font-size: 16px">
+           你还没有添加银行卡
+        </a>
+    </div>
+
+    <div class="padding">
+        <span class="button button-block button-positive" ng-click="showModal()">
+            添加银行卡
+        </span>
+    </div>
+
+</ion-content>
+
+<!-- 添加/修改排班 -->
+<script id="addCardTpl.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar class="bar bar-header bar-stable">
+        <h1 class="title">添加银行卡</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">取消</button>
+      </ion-header-bar>
+      <ion-content class="padding">
+        <form name="cardForm" novalidate="novalidate">
+          <div class="list">
+            <label class="item item-input item-select">
+              <span class="input-label">银行名称</span>
+              <select ng-model="$parent.form.bank" ng-require="true">
+                <option value="">-银行名称-</option>
+                <!-- ng-selected='vo.code==form_startTime' -->
+                <option ng-repeat='vo in bankList' value="{{vo}}" >{{vo}}</option>
+              </select>
+            </label>
+            <label class="item item-input">
+                    <span class="input-label">支行名称</span>
+                    <input type="text" ng-model="$parent.form.bankBranch" placeholder="请输入支行名称(必填)" ng-require="true"/>
+                  </label>
+            <label class="item item-input">
+                    <span class="input-label">持 卡 人</span>
+                    <input type="text" ng-model="$parent.form.accounter" placeholder="请输入姓名(必填)" ng-require="true"/>
+                  </label>
+
+            <label class="item item-input">
+              <span class="input-label">银行卡号</span>
+              <input type="text" ng-model="$parent.form.account" placeholder="请输入银行卡号(必填)" ng-require="true"/>
+            </label>
+          </div>
+          <div class="padding">
+            <button ng-disabled="cardForm.$invalid" class="button button-block button-positive" ng-click="doAddCard()">添加</button>
+          </div>
+        </form>
+      </ion-content>
+    </ion-modal-view>
+  </script>

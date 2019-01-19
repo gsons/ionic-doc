@@ -1,0 +1,88 @@
+.page-docdiag{
+     background-color: #FFF;
+     form .item {
+        border: 0 !important;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        width: 90% !important;
+        margin: 2px auto;
+        padding-left: 0;
+    }
+
+    .item input[type="text"] {
+        background-color: #EEE !important;
+        padding-left: 10px !important;
+    }
+
+.item textarea{
+        background-color: #EEE !important;
+        padding-left: 10px !important;
+}
+    .item input[type="number"] {
+        background-color: #EEE !important;
+        padding-left: 10px !important;
+    }
+
+    .item span {
+        font-size: 14px !important;
+    }
+   
+   span.input-label{
+        color: #000;
+   }
+
+   .input-label i{
+      color: #999;
+   }
+.uploader{
+     height: 50px;
+     line-height: 50px;
+     margin-left: 20px;
+     margin-top: 10px;
+    .file-uploader {
+        width: 50px;
+        height: 50px;
+        vertical-align: middle;
+        position: relative;
+        display: inline-block;
+        background-image: url(../assets/img/uploadPIC.png);
+        background-repeat: no-repeat no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        background-size: 50px;
+        overflow: hidden;
+        text-decoration: none;
+        text-indent: 0;
+        input{
+             position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+    }
+    }
+    span.positive{
+        vertical-align: middle;
+        font-size: 14px;
+    }
+
+    .imgList{
+       
+        .img{
+            float: left;
+            position: relative;
+            margin-right:5px;
+             .image{
+                display: inline-block;
+                vertical-align: middle;
+                height: 90px;
+                max-width: 300px;
+                // width: 90px
+             }
+             .delIcon{
+                position: absolute;top: 3px;right: 3px;
+             }
+        }
+    }
+}

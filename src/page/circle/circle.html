@@ -1,0 +1,22 @@
+<ion-content class="page-circle has-tabs">
+	 <iframe id="myifra" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="yes" allowtransparency="yes" ng-src="{{circleUrl}}" style="width: 100%;position: absolute;" height="{{height}}">
+    </iframe>
+</ion-content>
+
+
+<ion-tabs class="tabs-light tabs-icon-top">
+  <a class="tab-item " href="#/app/main" act="/app/main">
+    <i class="icon ion-ios-home"></i>
+    主页
+  </a>
+   <a class="tab-item" href="#/app/drlist" act="/app/drlist">
+<i class="icon ion-chatbubbles"></i>
+    消息
+      <i class="badge badge-assertive" ng-show="$NoReadNum>0">{{$NoReadNum}}</i>
+  </a>
+  <a class="tab-item" href="#/app/person" act="/app/person">
+  <i class="icon ion-person"></i>
+    个人
+  </a>
+</ion-tabs>
+

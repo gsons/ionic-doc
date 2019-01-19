@@ -1,0 +1,95 @@
+<ion-header-bar>
+    <!--     <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item" style=""><i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span></button> -->
+    <h1 class="title" align-title="center">处方预览</h1>
+</ion-header-bar>
+<ion-content delegate-handle="showsug-scroll" class="page-showsug">
+    <div class="list">
+        <div class="binren">
+            <img src="assets/img/uploadPic.png" alt="">
+            <span><span class="key">姓名: </span><span class="val">{{binren.name}}</span></span>
+            <span><span class="key">性别:</span><span class="val">{{binren.sex}}</span></span>
+            <span><span class="key">年龄:</span><span class="val">{{binren.age|str}}</span></span>
+        </div>
+        <div class="cf-item">
+            <div class="cf-head">病人病历</div>
+            <div class="cf-body padding">
+                {{docdiag.brbl|str}}
+            </div>
+        </div>
+        <div class="cf-item">
+            <div class="cf-head">病人病症</div>
+            <div class="cf-body padding">
+                {{sickMsg|str}}
+            </div>
+        </div>
+        <div class="cf-item">
+            <div class="cf-head">诊断</div>
+            <div class="cf-body padding">
+                <table>
+                    <tr>
+                        <td><span class="key">&nbsp;西医第一诊断: </span></td>
+                        <td><span class="val">{{docdiag.cyzdText|str}}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="key">&nbsp;西医第二诊断: </span></td>
+                        <td><span class="val"> {{docdiag.zyizdText|str}}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="key">&nbsp;中　医　诊断: </span></td>
+                        <td><span class="val"> {{docdiag.zyzdText|str}}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="key">&nbsp;症　　　　型: </span></td>
+                        <td><span class="val"> {{docdiag.zxText|str}}</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="cflist-item">
+            <div style="background-color: #ae7649;">
+                <div>
+                    <div style="position: relative;display: inline-block;margin: 5px 0 0 5px" ng-repeat="vo in medicalList track by $index">
+                        <div class="cfNum" ng-click="selectCF(vo,$index)" ng-class="{'active':$index==curIndex}">
+                            处方{{$index+1}}
+                        </div>
+                        <span ng-click="delCf($index)"  ng-show="$index==curIndex" style="position: absolute;top: -5px;right: 0px;"><img style="width: 15px;" src="./assets/img/delPic.png"></span>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;border-radius: 4%;font-size: 12px;">
+                <table style="text-align: center;width: 100%;border-bottom: 1px solid #edd6c0; ">
+                    <tbody>
+                        <tr style="background-color: #edd6c0">
+                            <th>用药名称</th>
+                            <th>单价</th>
+                            <th>数量(克)</th>
+                            <th>付数</th>
+                            <th>用法</th>
+                            <th>特殊用法</th>
+                        </tr>
+                        <tr ng-repeat="y in medicalList[curIndex]">
+                            <td>{{ y.chargeName }} </td>
+                            <td>{{ y.origPrice }}</td>
+                            <td>{{ y.dosage|number:0 }}</td>
+                            <td>{{ y.herbalAmount |number:0}}</td>
+                            <td>{{ y.supplyName }}</td>
+                            <td>{{ y.comment|str}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="padding notice">
+                    <span ng-show="medicalList.length>0"><span class="key" >处方{{curIndex+1}}费用:</span><span class="val">{{amount|number:2}}</span></span>
+                    <a class="button button-small button-positive" ui-sref="app.addpres">继续新增处方</a>
+                </div>
+            </div>
+        </div>
+        <div class="padding price">
+            <span class="key">诊 金:</span><span class="val">{{zhenjin}}</span><span class="key">总费用:</span><span class="val">{{AllAmount|number:2}}</span>
+        </div>
+        <div class="padding">
+            <button class="button button-block button-positive" ng-click="showFinish()">完 成 看 诊
+            </button>
+        </div>
+    </div>
+</ion-content>

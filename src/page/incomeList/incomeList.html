@@ -1,0 +1,72 @@
+<ion-header-bar>
+    <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item">
+        <i class="icon ion-android-arrow-back"></i>
+    </button>
+    <h1 class="title" align-title="center">{{title}}</h1>
+</ion-header-bar>
+<ion-content delegate-handle="incomeList-scroll" class="page-incomeList">
+    <div class="option" ng-show="option=='order'">
+        <div class="row tr-head">
+            <div class="col col-20 text-left">病人姓名</div>
+            <div class="col col-20 text-center">预约金额</div>
+            <div class="col col-20 text-center">医生收益</div>
+            <div class="col col-25 text-center">就诊时间</div>
+            <div class="col col-15 text-center">状态</div>
+        </div>
+        <div class="row" ng-repeat="vo in orderList">
+            <div class="col col-20 text-left">{{vo.binrName}}</div>
+            <div class="col col-20 text-center">{{vo.amount}}</div>
+            <div class="col col-20 text-center assertive">{{vo.firstAmount}}</div>
+            <div class="col col-25 text-center">{{vo.reserDate|date:"yyyy/MM/dd"}}</div>
+            <div class="col col-15 text-center">{{vo.settleStatusText}}</div>
+        </div>
+    </div>
+
+    <div class="option" ng-show="option=='pres'">
+        <div class="row tr-head">
+            <div class="col col-20 text-left">病人姓名</div>
+            <div class="col col-20 text-center">处方金额</div>
+            <div class="col col-20 text-center">医生收益</div>
+            <div class="col col-25 text-center">开方时间</div>
+            <div class="col col-15 text-center">状态</div>
+        </div>
+        <div class="row" ng-repeat="vo in presList">
+            <div class="col col-20 text-left">{{vo.binrName}}</div>
+            <div class="col col-20 text-center">{{vo.amount}}</div>
+            <div class="col col-20 text-center assertive">{{vo.firstAmount}}</div>
+            <div class="col col-25 text-center">{{vo.reserDate|date:"yyyy/MM/dd"}}</div>
+            <div class="col col-15 text-center">{{vo.settleStatusText}}</div>
+        </div>
+    </div>
+
+    <div class="option" ng-show="option=='withdraw'">
+        <div class="row tr-head">
+            <div class="col col-25 text-left">提现人</div>
+            <div class="col col-25 text-center">提现金额</div>
+            <div class="col col-25 text-center">提现时间</div>
+            <div class="col col-25 text-center">状态</div>
+        </div>
+        <div class="row" ng-repeat="vo in withdrawList">
+            <div class="col col-25 text-left">{{vo.doctor}}</div>
+            <div class="col col-25 text-center assertive">{{vo.amount}}</div>
+            <div class="col col-25 text-center">{{vo.payTime|str}}</div>
+            <div class="col col-25 text-center">
+                <span class="calm" ng-if="vo.status == 1">处理中</span>
+                <span class="balanced" ng-if="vo.status == 2">已提现</span>
+            </div>
+        </div>
+    </div>
+    <ion-infinite-scroll ng-if="haveDatas" on-infinite="loadNextPage()" distance="3%">
+    </ion-infinite-scroll>
+    <div ng-if="!haveDatas && orderList.length!=0" class="text-center assertive">
+        没有更多记录了...
+    </div>
+    <div ng-if="!haveDatas && presList.length!=0" class="text-center assertive">
+        没有更多记录了...
+    </div>
+
+    <div ng-if="!haveDatas && withdrawList.length!=0" class="text-center assertive">
+        没有更多记录了...
+    </div>
+
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header-bar>
+   <button ng-click="$back()" class="button back-button buttons  button-stable button-clear  header-item" style=""><i class="icon ion-android-arrow-back"></i>
+    <span class="back-text" style=""></span></button>
+    <h1 class="title" align-title="center">回访用户</h1>
+</ion-header-bar>
+<ion-content class="page-PresNotice has-tabs">
+        <div class="list">
+        <div class="item item-avatar" href="javascript:;" ng-repeat="vo in userlist">
+          <img ion-img ngsrc="{{vo.headimgurl}}">
+          <h2>{{vo.toUserName|valFilter:'nickName'}}</h2>
+          <p>就诊时间:{{vo.time}}</p>
+           <p><a  class="pre-tel" ng-if="vo.to"  href="tel:{{vo.to}}"><i  style="font-size: 17px" class="icon ion-ios-telephone"></i>{{vo.to}}</a></p>
+          <button class="button button-small button button-positive" ng-click="doChat(vo)">发起聊天</button>
+        </div>
+    </div>
+</ion-content>
+<ion-tabs class="tabs-light tabs-icon-top">
+    <a class="tab-item " href="#/app/main" act="/app/main">
+      <i class="icon ion-ios-home"></i>
+      主页
+    </a>
+     <a class="tab-item" href="#/app/drlist" act="/app/drlist">
+  <i class="icon ion-chatbubbles"></i>
+      消息
+        <i class="badge badge-assertive" ng-show="$NoReadNum>0">{{$NoReadNum}}</i>
+    </a>
+    <a class="tab-item" href="#/app/person" act="/app/person">
+    <i class="icon ion-person"></i>
+      个人
+    </a>
+  </ion-tabs>
+  

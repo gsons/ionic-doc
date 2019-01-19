@@ -1,0 +1,36 @@
+<ion-header-bar>
+    <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item" style=""><i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span></button>
+    <h1 class="title" align-title="center">随访通知设置</h1>
+</ion-header-bar>
+<ion-content class="has-header page-followUp">
+    <div class="list">
+        <div class="item notice positive">
+            {{notice}}
+        </div>
+        <div class="item">
+            <div class="m-checkbox"><label class="checkbox checkbox-calm"><input ng-model="formData.d1" type="checkbox"></label> <span>1天</span></div>
+            <div class="m-checkbox"><label class="checkbox checkbox-calm"><input ng-model="formData.d2" type="checkbox"></label> <span>2天</span></div>
+            <div class="m-checkbox"><label class="checkbox checkbox-calm"><input ng-model="formData.d3" type="checkbox"></label> <span>3天</span></div>
+            <div class="m-checkbox"><label class="checkbox checkbox-calm"><input ng-model="formData.d5" type="checkbox"></label> <span>5天</span></div>
+        </div>
+        <div class="item">
+            <div class="m-checkbox"><label class="checkbox checkbox-calm"><input ng-model="formData.w1" type="checkbox"></label> <span>1周</span></div>
+            <div class="m-checkbox"><label class="checkbox checkbox-calm"><input ng-model="formData.w2" type="checkbox"></label> <span>2周</span></div>
+            <div class="m-checkbox"><label class="checkbox checkbox-calm"><input ng-model="formData.w3" type="checkbox"></label> <span>3周</span></div>
+        </div>
+        <div class="item">
+            <div class="m-checkbox"><label class="checkbox checkbox-calm"><input ng-model="formData.m1" type="checkbox"></label> <span>1个月</span></div>
+            <div class="m-checkbox"><label class="checkbox checkbox-calm"><input ng-model="formData.m2" type="checkbox"></label> <span>2个月</span></div>
+            <div class="m-checkbox"><label class="checkbox checkbox-calm"><input ng-model="formData.m3" type="checkbox"></label> <span>3个月</span></div>
+        </div>
+        <div class="item notice assertive">
+            从就诊完成那天开始计算
+        </div>
+        <div class="padding item">
+            <button ng-click="stopAllNotice();" class=" button button-assertive button-block">停止发送</button>
+            <button ng-click="submitNotice();" class=" button button-positive button-block">提　交</button>
+        </div>
+    </div>
+</ion-content>
+<!--  -->

@@ -1,0 +1,49 @@
+<div class="bar bar-header has-tabs-top bar-stable ">
+  <div class="h1 title">消息</div>
+</div>
+<div class="page-drlist tabs-striped tabs-top tabs-background-stable tabs-color-positive">
+  <div class="tabs">
+    <a  class="tab-item" ng-class="{'active':showItem==1}" href="javascript:;" ng-click="toggleShow(1)">
+          最近聊天
+        </a>
+    <a class="tab-item" ng-class="{'active':showItem==2}" href="javascript:;" ng-click="toggleShow(2)">
+           我的粉丝
+        </a>
+    <a class="tab-item" ng-class="{'active':showItem==3}" href="javascript:;" ng-click="toggleShow(3)">
+          在线用户
+        </a>
+    <a class="tab-item" ng-class="{'active':showItem==4}" href="javascript:;" ng-click="toggleShow(4)">
+          未回复
+        </a>
+  </div>
+</div>
+<ion-content on-swipe-left="swipe(1)" on-swipe-right="swipe(-1)" delegate-handle="drlist-scroll" class="has-tabs has-tabs-top page-drlist">
+  <div class="list">
+    <a ng-repeat="item in list_user" class="item item-avatar" ng-click="gochatByUser(item)" ng-show="item.nickname">
+          <img ion-img ngsrc="{{item.headerUrl}}" >
+          <h2>{{item.nickname|valFilter:'nickName'}}</h2>
+          <p>{{item.accountId}}</p>
+          <span class="badge badge-assertive" ng-show="item.nums>0">{{item.nums}}</span>
+        </a>
+  </div>
+</ion-content>
+<div class="nodata nodata_line" ng-if="list_user.length==0">
+            <span class="nodata__tips">暂无用户</span>
+    </div>
+
+
+<ion-tabs class="tabs-light tabs-icon-top">
+  <a class="tab-item " href="#/app/main" act="/app/main">
+    <i class="icon ion-ios-home"></i>
+    主页
+  </a>
+   <a class="tab-item positive" href="#/app/drlist" act="/app/drlist">
+<i class="icon ion-chatbubbles"></i>
+    消息
+      <i class="badge badge-assertive" ng-show="$NoReadNum>0">{{$NoReadNum}}</i>
+  </a>
+  <a class="tab-item" href="#/app/person" act="/app/person">
+  <i class="icon ion-person"></i>
+    个人
+  </a>
+</ion-tabs>

@@ -1,0 +1,89 @@
+<ion-header-bar>
+    <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item" style=""><i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span></button>
+    <h1 class="title" align-title="center">病历与诊断</h1>
+</ion-header-bar>
+<ion-content class="page-docdiag">
+    <div class="list">
+        <form name="form" ng-submit="submit()">
+            <h5 style="padding-left:15px;font-size: 16px"><i class="icon ion-medkit" style="color:#ae7649"></i> 病历与诊断</h5>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label"> 病历:</span>
+                <textarea placeholder="(选填)病历" name="sickHis" ng-model="$parent.sickHis"></textarea>
+            </label>
+            <div class="item item-input item-stacked-label">
+                <span class="input-label">西医第一诊断: </span>
+                <span   class="input-label" style="color: #888"><i ng-show="sickName1" ng-click="clearSickName(1)" class="icon ion-close-circled"></i> </span>
+                <div ng-click="openModalForSickName(1)">
+                    <input type="text" name="sickName1" ng-model="sickName1" placeholder="(选填)西医第一诊断" disabled="true">
+                </div>
+            </div>
+            <div class="item item-input item-stacked-label">
+                <span class="input-label">西医第二诊断: </span>
+                <span   class="input-label" style="color: #888"><i ng-show="sickName2" ng-click="clearSickName(2)" class="icon ion-close-circled"></i> </span>
+                <div ng-click="openModalForSickName(2)">
+                    <input type="text" name="sickName2" ng-model="sickName2" placeholder="(选填)西医第一诊断" disabled="true">
+                </div>
+            </div>
+            <div class="item item-input item-stacked-label">
+                <span class="input-label">中医诊断: </span>
+                <span   class="input-label" style="color: #888"><i ng-show="sickName3" ng-click="clearSickName(3)" class="icon ion-close-circled"></i> </span>
+                <div ng-click="openModalForSickName(3)">
+                    <input type="text" name="sickName3" ng-model="sickName3" placeholder="(选填)中医诊断" disabled="true">
+                </div>
+            </div>
+            <div class="item item-input item-stacked-label">
+                <span class="input-label">症型: </span>
+                <span   class="input-label" style="color: #888"><i ng-show="sickName4" ng-click="clearSickName(4)" class="icon ion-close-circled"></i> </span>
+                <div ng-click="openModalForSickName(4)">
+                    <input type="text" name="sickName4" ng-model="sickName4" placeholder="(选填)症型" disabled="true">
+                </div>
+            </div>
+            
+<!--             <h5 style="padding-left:15px;font-size: 16px"><i class="icon ion-upload" style="color:#ae7649"></i>上传附件</h5>
+
+            <div class="row item">
+                <div class="col"><a class="button button-positive button-small" ng-class="{'button-outline':index!=0}" ng-click="toggleIndex(0)">检验单</a>  </div>
+                <div class="col"><a class="button button-positive button-small"  ng-class="{'button-outline':index!=1}" ng-click="toggleIndex(1)">检查单</a> </div>
+                <div class="col"><a class="button button-positive button-small"  ng-class="{'button-outline':index!=2}" ng-click="toggleIndex(2)">其他</a> </div>
+            </div>
+            <div class="uploader">
+                <div class="file-uploader"><input type="file" accept="image/*" nv-file-select uploader="uploader" multiple  ></div> 
+                  <span class="positive">{{imgList[index].text}}</span>
+            </div>
+
+              <div class="padding imgList">
+                    <div class="img" ng-repeat="vo in uploader.queue" ng-if="vo.formData[0].picType==(index+1)">
+                        <div class="image"  ng-thumb="{ file: vo._file,height:90 }"> 
+                        </div>
+                     <span ng-click="delPic(vo)" class="delIcon"><img src="./assets/img/delPic.png"></span>
+                   </div>
+            </div> -->
+
+            <div class="item padding" style="margin-top: 20px;margin-bottom: 20px">
+                <div class="list list-inset" style="padding: 0;border:none;">
+                    <button type="submit" ng-init="isCanSubmit=true" ng-disabled="form.$invalid&&isCanSubmit" class="button button-block button-calm" style="margin: 0;background-color: #ae7649;border:0" disabled="disabled">下一步</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ion-content>
+<script id="JCDmodal.html" type="text/ng-template">
+    <ion-modal-view>
+            <ion-header-bar class="bar bar-header">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios-search placeholder-icon"></i>
+                    <input type="search" placeholder="搜索并选择病症" style="background-color:#EEE;padding:0 10px" name="key" ng-model="key" ng-change="searchZD(key)">
+                </label>
+                <button class="button button-clear button-small button-positive" ng-click="JCDmodal.hide()">关闭</button>
+            </ion-header-bar>
+            <ion-content class="ionic-scroll" delegate-handle="dataScroll">
+                <ion-list>
+                    <ion-item ng-show="sickNameList.length==0" style="color: darkred;text-align: center;">:( 没有相关结果</ion-item>
+                    <ion-item ng-repeat="item in sickNameList" style="text-align: center;" ng-click="selectSickName(item);">
+                        {{item.name}}
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-modal-view>
+    </script>

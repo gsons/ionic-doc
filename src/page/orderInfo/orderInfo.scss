@@ -1,0 +1,22 @@
+.page-orderInfo{
+    .voice {
+        width: 23px;
+        height: 31px;
+        background-repeat: no-repeat;
+        display: inline-block;
+        background-image: url('../assets/img/start.png');
+        &.voice0 {
+            width:7px;
+        }
+    
+        &.voice1 {
+            width: 13px;
+        }
+    
+        &.voice2 {
+            width: 23px;
+        }
+    }
+
+
+}

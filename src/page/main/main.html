@@ -1,0 +1,81 @@
+<ion-header-bar class="bar-light">
+  <button ng-click="$refresh()" class="button button-stable button-clear"><i class="icon ion-android-refresh"></i></button>
+  <h1 class="title" align-title="center">首 页</h1>
+</ion-header-bar>
+<ion-content class="ionic-scroll has-tabs page-main">
+  <ion-slide-box active-slide="myActiveSlide" does-continue="true" auto-play="true" slide-interval="3000" show-pager="true">
+    <ion-slide style="background-color:transparent;" ng-repeat="vo in imgArr track by $index">
+      <div class="box-img">
+        <img ngsrc="{{vo}}" ion-img ngopt="-20,0.5625" />
+      </div>
+    </ion-slide>
+  </ion-slide-box>
+  <div class="row">
+    <a href="javascript:;" class="col item" ui-sref="app.dotorder">
+      <div class="col-item">
+        <svg-order></svg-order>
+        <div class="name-item-profile">
+          预约信息
+        </div>
+      </div>
+    </a>
+    <a href="javascript:;" class="col item" ui-sref="app.paiban">
+      <div class="col-item">
+        <svg-paiban></svg-paiban>
+        <div class="name-item-profile">
+          排班设置
+        </div>
+      </div>
+    </a>
+    <a href="javascript:;" class="col item" ui-sref="app.kaifang">
+      <div class="col-item">
+        <svg-kaifang></svg-kaifang>
+        <div class="name-item-profile">
+          线上开方
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="row">
+    <a href="javascript:;" class="col item" ui-sref="app.record">
+      <div class="col-item">
+        <svg-record></svg-record>
+        <div class="name-item-profile">
+          就诊记录
+        </div>
+      </div>
+    </a>
+    <a href="javascript:;" class="col item" ui-sref="app.PresNotice">
+      <div class="col-item">
+        <svg-star></svg-star>
+        <div class="name-item-profile">
+          回访用户
+        </div>
+      </div>
+    </a>
+    <a href="javascript:;" class="col item" ui-sref="app.circle">
+      <div class="col-item">
+        <svg-circle></svg-circle>
+        <div class="name-item-profile">
+          我的圈子
+        </div>
+      </div>
+    </a>
+  </div>
+</ion-content>
+
+<ion-tabs class="tabs-light tabs-icon-top">
+  <a class="tab-item positive" href="#/app/main" act="/app/main">
+    <i class="icon ion-ios-home"></i>
+    主页
+  </a>
+   <a class="tab-item" href="#/app/drlist" act="/app/drlist">
+<i class="icon ion-chatbubbles"></i>
+    消息
+     <i class="badge badge-assertive" ng-show="$NoReadNum>0">{{$NoReadNum}}</i>
+  </a>
+  <a class="tab-item" href="#/app/person" act="/app/person">
+  <i class="icon ion-person"></i>
+    个人
+  </a>
+</ion-tabs>

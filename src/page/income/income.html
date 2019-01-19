@@ -1,0 +1,51 @@
+<ion-header-bar>
+    <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item" style="">
+        <i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span>
+    </button>
+    <h1 class="title" align-title="center">我的收益</h1>
+</ion-header-bar>
+<ion-content class="page-income">
+    <div class="list">
+        <div class="padding">
+            <div class="vo">
+                <span class="span-key">可提现总额: </span>
+                <span class="assertive">{{orderAmount+presAmount}}</span>
+            </div>
+            <div class="vo">
+                <span class="span-key">预约总收益: </span>
+                <span>{{orderAmount}}</span>
+            </div>
+            <div class="vo">
+                <span class="span-key">处方总收益: </span>
+                <span>{{presAmount}}</span>
+            </div>
+        </div>
+    </div>
+
+    <a class="button-block button button-small button-app" ui-sref="app.incomeList({option:'order'})">预约收益记录</a>
+    <a class="button-block button button-small button-app" ui-sref="app.incomeList({option:'pres'})">处方收益记录</a>
+    <!-- <a class="button-block button button-small button-app" ui-sref="app.incomeList({option:'withdraw'})">提现历史记录</a> -->
+    <a class="button-block button button-small button-app" ui-sref="app.bankCard"> 我的银行卡 </a>
+    <a class="button-block button button-small button-app button-positive" ng-click="withdraw()"> 申 请 提 现 </a>
+</ion-content>
+
+<script id="templates/withdrawModal.html" type="text/ng-template">
+    <form class="withdrawModal">
+    <div class="list page-income">
+        <label class="item item-input item-select" ng-show="$parent.cardList.length>0">
+                <span class="input-label">银行卡</span>
+                <select ng-model="$parent.accountId" required="required">
+                  <option value="">-选择银行卡-</option>
+                  <option ng-repeat='vo in $parent.cardList' value="{{vo.account}}"> {{vo.bankBranch}} {{vo.account}}</option>
+                </select>
+        </label>
+        <label class="item item-input" ng-show="$parent.cardList.length==0">
+                <span class="input-label">注意: <span class="assertive">请先添加银行卡信息</span>   </span>
+        </label>
+        <label class="item item-input">
+                <span class="input-label">提现金额: <span class="assertive">{{orderAmount+presAmount}}</span>   </span>
+        </label>
+    </div>
+</form>
+</script>

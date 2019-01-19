@@ -1,0 +1,14 @@
+.page-drlist {
+    .tab-item {
+        color: #ae7649 !important;
+        font-weight: bold;
+    }
+    .item.activated {
+        background-color:#FFF;
+    }
+    .list a.item{
+    width: 95%;
+    margin:5px auto;
+    border-radius: 4px;
+}
+}

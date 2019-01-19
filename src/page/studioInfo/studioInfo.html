@@ -1,0 +1,39 @@
+<ion-header-bar>
+    <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item" style=""><i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span></button>
+    <h1 class="title" align-title="center">我的工作室</h1>
+</ion-header-bar>
+<ion-content class="page-studioInfo">
+    <div class="list">
+        <div class="head">
+            <img ngsrc="{{avatarurl}}" ion-img>
+            <div>
+                <p>{{studio.name}}</p>
+            </div>
+        </div>
+        <div class="padding">
+        	<div class="vo"><span class="span-key">科室: </span><span class="span-val">{{doctor.deptNames}}</span></div>
+        	 <div class="vo"><span class="span-key">线上诊金: </span><span class="assertive">{{studio.firstdiagnosis}}</span></div>
+        	  <div class="vo"><span class="span-key">线下诊金: </span><span class="assertive">{{studio.treatmentfee}}</span></div>
+            <div class="vo"><span class="span-key">擅长: </span><span class="span-val">{{doctor.profiles}}</span></div>
+        </div>
+
+         <a class="button-block button button-small button-app" ng-click="saveStudio()">预约诊金修改</a>
+         <a class="button-block button button-small button-app" ng-click="shareStudio()">分享工作室</a>
+    </div>
+</ion-content>
+
+<script id="templates/zhenJinModal.html" type="text/ng-template">
+    <form class="zhenJinModal">
+    <div class="list page-addpres">
+        <label class="item item-input item-stacked-label" style="background-color: #FFF;">
+            <span class="input-label" style="font-size:13px">线上诊金:</span>
+             <input type="number" ng-model="$parent.firstdiagnosis">
+        </label>
+        <label class="item item-input item-stacked-label" style="background-color: #FFF;">
+            <span class="input-label" style="font-size:13px">线下诊金:</span>
+             <input type="number" ng-model="$parent.treatmentfee">
+        </label>
+    </div>
+</form>
+</script>

@@ -1,0 +1,39 @@
+<ion-view class="page-workIncome">
+<div class="bar bar-header has-tabs-top bar-ligth item-input-inset item-select">
+    <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item" style=""><i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span></button>
+    <select class="vp-select" ng-model="option" ng-change="slectOption(option)">
+        <option value="1">工作室提成统计</option>
+        <option value="2">工作室营业收入统计</option>
+    </select>
+</div>
+<div class="tabs-top tabs-striped tabs-color-positive">
+    <div class="tabs" style=" align-items: flex-start">
+        <a class="tab-item vp-tab" ng-class="{'active':currentDate==date}" href="javascript:;" ng-repeat="date in _6months" ng-click="toggleDate(date)">
+            <div style="line-height:20px;font-size:16px">{{date.mon}}月
+                <div class="year">{{date.year}}</div>
+            </div>
+            <!-- <span></span> -->
+          </a>
+    </div>
+</div>
+<ion-content class="has-tabs-top" delegate-handle="workIncome-scroll">
+    <div class="vp-list">
+        <div class="item" ng-repeat="item in list">
+            <div class="left">
+                <div><span class="text-key">日期:</span> <span class="text-value date">{{item.reserDate}}</span></div>
+                <div><span class="text-key">挂号费:</span> <span class="text-value">{{item.ghf}}</span></div>
+                <div><span class="text-key">治疗费:</span> <span class="text-value">{{item.zlf}}</span></div>
+                <div><span class="text-key">医生补贴:</span> <span class="text-value">{{item.ysbt}}</span></div>
+                <div><span class="text-key">合计:</span> <span class="text-value">{{item.amount}}</span></div>
+            </div>
+            <div class="right">
+                <div><span class="text-key">中药费:</span> <span class="text-value">{{item.yf}}</span></div>
+                <div><span class="text-key">中成药费:</span> <span class="text-value">{{item.zcy}}</span></div>
+                <div><span class="text-key">配方(手工):</span> <span class="text-value">{{item.pf}}</span></div>
+                <div><span class="text-key">其他:</span> <span class="text-value">{{item.jt}}</span></div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+</ion-view>	

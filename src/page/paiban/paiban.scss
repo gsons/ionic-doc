@@ -1,0 +1,44 @@
+.page-paiban {
+    .wrap {
+        margin: 10px 0;
+        text-align: center;
+        .toggle-button {
+            width: 170px;
+            display: inline-block;
+            text-align: center;
+        }
+    }
+
+    .table {
+        width: 100%;
+    }
+    .table td,
+    .table th {
+        border: 1px #ae7649 solid;
+        width: 12.5%;
+        box-sizing: border-box;
+        vertical-align: middle;
+        text-align: center;
+        padding: 5px 0;
+    }
+    .table td.timezone,
+    .table th {
+        color: white;
+        background-color: #ae7649;
+    }
+    td.green {
+        background-color: #11c1f3;
+        color: #fff;
+    }
+    .td-time.active {
+        box-shadow: inset 0 0 0px 3px #1AAD19;
+        -moz-box-shadow: inset 0 0 0px 3px #1AAD19;
+        -webkit-box-shadow: inset 0 0 0px 3px #1AAD19;
+    }
+    ul.list {
+        border-bottom: 1px solid #ddd;
+    }
+    .card li.item {
+        padding: 5px;
+    }
+}

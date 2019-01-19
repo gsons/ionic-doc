@@ -1,0 +1,123 @@
+.page-showsug {
+    background-color: #FFF;
+
+    .padding {
+        padding: 5px;
+    }
+
+    .binren {
+        height: 50px;
+        line-height: 50px;
+        background-color: #f1f0ef;
+
+        img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+            margin: 0px 10px;
+        }
+
+        span.key {
+            color: #333;
+            font-size: 15px;
+        }
+
+        span.val {
+            color: #ae7649;
+            margin-right: 10px;
+            font-size: 15px;
+        }
+    }
+    .cf-item {
+        width: 98%;
+        margin: 5px auto;
+        background-color: white;
+        height: auto;
+        display: block;
+        overflow: auto;
+        border: solid 1px #ae7649;
+        // border-radius: 4px;
+
+        span.key {
+            color: #333;
+            font-size: 13px;
+
+        }
+
+        table {
+            td:first-child {
+                text-align: right;
+            }
+        }
+
+        span.val {
+            color: #ae7649;
+            font-size: 13px;
+            margin-left: 10px;
+        }
+
+        .cf-head {
+            background-color: #ae7649;
+            color: white;
+            padding-left: 10px;
+            height: 25px;
+            line-height: 25px;
+            width: 100%;
+        }
+    }
+
+    .notice {
+        span.key {
+            color: #333;
+            font-size: 14px;
+        }
+
+        span.val {
+            color: #ae7649;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .button-small{
+            padding: 2px 4px 1px;
+            min-width: 28px;
+            min-height: 16px;
+            font-size: 12px;
+            line-height: 16px;
+        }
+    }
+
+    .cflist-item {
+        width: 98%;
+        text-align: left;
+        // border-radius: 4px;
+        margin: 10px auto;
+        border: 1px #ae7649 solid;
+        position: relative;
+    }
+
+    .cfNum {
+        padding: 5px 1px 1px 1px;
+        margin-right: 2px;
+        background-color: white;
+        color: #ae7649;
+        display: inline-block;
+
+        &.active {
+            background-color: forestgreen;
+            color: white;
+        }
+    }
+
+    .price {
+        span.key {
+            color: #333;
+            font-size: 15px;
+        }
+
+        span.val {
+            color: darkred;
+            margin-right: 10px;
+            font-size: 15px;
+        }
+    }
+}

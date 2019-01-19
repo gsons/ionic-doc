@@ -1,0 +1,27 @@
+.page-studioInfo{
+      .head {
+        margin-top: 10px;
+        text-align: center;
+        img {
+            width:80px;
+            height:80px;
+            border-radius: 100%;
+        }
+
+        p {
+            display: inline-block;
+            color: #ae7649
+        }
+    }
+    .span-key{
+    	 color: #ae7649;
+    	 // font-weight: bold;
+    }
+    .span-val{
+    	 color: #666;
+    }
+    .vo{
+    	margin:15px;
+    	font-size: 16px;
+    }
+}

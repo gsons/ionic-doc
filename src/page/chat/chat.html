@@ -1,0 +1,117 @@
+<ion-header-bar>
+  <!--   <button ng-click="$back()" class="button back-button  button-stable buttons button-clear  header-item" style=""><i class="icon ion-android-arrow-back"></i>
+  <span class="back-text" style=""></span></button> -->
+  <button ng-click="closeChat()" class="button back-button  button-stable buttons button-clear  header-item">
+    <i class="icon ion-android-arrow-back"></i>
+    <span class="back-text"></span>
+  </button>
+
+  <h1 class="title" align-title="center">{{chatuser.nickname|valFilter:'nickName'}}</h1>
+  <!--   <button ng-click="closeChat()" class="button back-button button-stable buttons button-clear  header-item"><i class="icon ion-power"></i>
+  </button> -->
+</ion-header-bar>
+<ion-content class="has-tabs page-chat" delegate-handle="chat-scroll" on-scroll="scroll()" id="message-detail-content">
+  <div class="scroll-refresher" style="text-align: center;top:0px;z-index: 9" ng-if="isrefreshIcon">
+    <ion-spinner icon="ios-small"></ion-spinner>
+  </div>
+  <!-- -->
+  <!-- <ion-refresher  on-pulling="doRefresh()"  class="spinner-positive"></ion-refresher> -->
+  <div class="main" id="chat-content">
+    <div class="layim-chat-main">
+      <ul class="clearfix">
+        <div ng-repeat="msg in chatMsgList|orderBy:['createDate']" class="item-msg">
+          <!-- ng-if="($index>=1&&((chatMsgList[$index].createDate-chatMsgList[$index-1].createDate)>12000))||$index==0" -->
+          <li class="layim-chat-system">
+            <span>{{msg.createDate|beautyTime}}</span>
+          </li>
+          <!-- 接收方 -->
+          <li class="layim-chat-li" ng-if="msg.sendId!=studioId">
+            <div class="layim-chat-user">
+              <img ion-img ngsrc="{{chatuser.headerUrl}}">
+              <cite>{{msg.sender|unescapeChar}}</cite>
+            </div>
+            <!-- 非语言消息 -->
+            <div class="layim-chat-text" ng-if="msg.contentType!= 4">
+              <ion-msg msg="msg.content|unescapeChar"></ion-msg>
+            </div>
+            <!-- 语言消息 -->
+            <div class="layim-chat-text" ng-if="msg.contentType== 4" ng-click='playVoice(msg)' style="padding:4px;line-height:33px;"
+              ng-style='{width:(msg.time*3+70+"px")}'>
+              <div class="voice-row voice-left">
+                <div class="voice" ng-class='{true:voiceCss,false:""}[msg.content==currentVoiceId]'></div>
+              </div>
+              <span style='margin-left:10px'>{{msg.time}}s</span>
+            </div>
+
+          </li>
+          <!-- 发送方 -->
+          <li class="layim-chat-li layim-chat-mine" ng-if="msg.sendId==studioId">
+            <div class="layim-chat-user">
+              <img ion-img ngsrc="{{doctor.imgUrl}}">
+              <cite>{{msg.sender}}</cite>
+            </div>
+            <!-- 非语言消息 -->
+            <div class="layim-chat-text" ng-if="msg.contentType!= 4">
+              <ion-msg msg="msg.content|unescapeChar"></ion-msg>
+            </div>
+            <!-- 语言消息 -->
+            <div class="layim-chat-text" ng-click='playVoice(msg)' style="padding:4px;line-height:33px;" ng-if="msg.contentType== 4"
+              ng-style='{width:(msg.time*3+70+"px")}'>
+              <div class="voice-row voice-right">
+                <div class="voice" ng-class='{true:voiceCss,false:""}[msg.content==currentVoiceId]'></div>
+              </div>
+              <span style='margin-right: 7px;float: right;'>{{msg.time}}s</span>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</ion-content>
+
+
+
+<ion-footer-bar align-title="left" class="bar-stable" resize-foot-bar>
+  <button ng-click="toggleVoiceBtn()" class="button button-icon icon  rj-footer-btn left positive" ng-class="{true : 'ion-ios-keypad',false : 'ion-ios-mic' }[isShowVoice]"
+    style="color: #ae7649">
+  </button>
+  
+  <label class="item item-input rj-footer-input" ng-hide="isShowVoice" id='rj-footer-input'>
+    <textarea msd-elastic ng-model="msg" ng-hide="isShowVoice" class="rj-footer-textarea"></textarea>
+  </label>
+  <div class="button rj-btn-voice" ng-show="isShowVoice" ng-touchstart='tape()' ng-touchend='sendVoice()' on-drag-up='calcDistance($event)'>按住 说话</div>
+
+  <button class="button button-icon icon ion-ios-plus rj-footer-btn right" style="color: #ae7649" ng-hide="msg" ng-click="togleShowTool()">
+  </button>
+  <button class="button  button-positive button-small rj-footer-btn right" ng-show="msg" style="max-height: 31px;" ng-click="send();">发送 </button>
+</ion-footer-bar>
+
+<div class="list page-chat chat-word-list" id="chat-word-list" style="display: none;">
+  <div class="item" ng-repeat="vo in uMsg" ng-click="selectWord(vo.text)">
+    {{vo.text}}
+  </div>
+</div>
+<div class="page-chat chat-tool" id="chat-tool" style="display:none">
+  <button id="input_img" class="button button-clear button-positive" style="margin-right:6px">
+    <i class="icon ion-image"></i>
+  </button>
+  <input type="file" accept="image/*" id="load_img" name="file" style="display:none">
+  <button ng-click="toggleWordList()" class="button button-clear button-positive" style="margin-right:6px">
+    <i class="icon ion-chatbubble-working"></i>
+  </button>
+  <button ng-click="sendPaiban()" class="button button-clear button-positive" style="margin-right:6px">
+    <i class="icon ion-android-upload"></i>
+  </button>
+  <button class="button-clear"></button>
+</div>
+
+<div class="page-chat">
+  <div class="chat-mic" ng-if='showVoiceLoading'>
+    <img ng-show="distance<50" style="width: 100%;" src="assets/img/mic.gif" alt="">
+    <img ng-show="distance>=50" style="width: 100%;" src="assets/img/return.png" alt="">
+    <div style="position: absolute; bottom: 33px;color: #fff;text-align: center;width: 100%;">
+      <span ng-if="distance<=50" style="padding: 2px;display: table;margin: 10px auto;">手指上划,取消发送</span>
+      <span ng-if="distance>50" style="padding: 2px;display: table;margin:10px auto;background-color:red">松开手指,取消发送</span>
+    </div>
+  </div>
+</div>

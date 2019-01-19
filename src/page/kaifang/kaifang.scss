@@ -1,0 +1,77 @@
+.page-kaifang {
+   background-color: #FFF;
+    form .item {
+        border: 0;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        width: 90%;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .item input[type="text"] {
+        background-color: #EEE;
+        padding-left: 10px;
+    }
+
+    .item input[type="number"] {
+        background-color: #EEE;
+        padding-left: 10px;
+    }
+
+    .item span {
+        font-size: 14px;
+    }
+   
+   span.input-label{
+        color: #000;
+   }
+/*     select,select:focus,select:active{
+    border: 1px solid #ddd !important;
+    outline:none;
+    float:right;
+    border-radius: 5px;
+}
+select.selected{
+     width:30px;
+} */
+  select.patient{
+    float:right;
+  }
+  select,select:focus,select:active{
+    float:right;
+    border: 1px solid #999 !important;
+    outline:none;
+     border-radius: 3px;
+  }
+  
+
+  .num-tool{
+    a{
+        margin: 0;
+        font-size: 14px;
+        background: #ae7649;
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        color: #fff;
+        padding: 0 10px;
+        float: left;
+    }
+    input {
+        float: left;
+        width: 60px;
+        height: 30px;
+        line-height: 30px;
+        padding-left:5px !important;
+        padding-right:5px;
+        text-align: center;
+        border: 1px solid #ae7649;
+        border-left: none;
+        border-right: none;
+        border-radius: 0%;
+        outline: 0;
+        color:#ae7649;
+    }
+  }
+}

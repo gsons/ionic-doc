@@ -1,0 +1,308 @@
+<ion-header-bar>
+    <button ng-click="$back()" class="button back-button  button-stable buttons button-clear  header-item" style="">
+        <i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span>
+    </button>
+    <h1 class="title" align-title="center">预约与处方信息</h1>
+</ion-header-bar>
+<ion-content class="page-recordDetail" delegate-handle="recordDetail-scroll">
+    <div class="list">
+        <div class="binren">
+            <img ngsrc="{{orderPatient.headimgurl}}" ion-img>
+            <span>
+                <span class="key">姓名: </span>
+                <span class="val">{{orderPatient.binrName}}</span>
+            </span>
+            <span>
+                <span class="key">性别:</span>
+                <span class="val">{{orderPatient.binrSex}}</span>
+            </span>
+            <span>
+                <span class="key">年龄:</span>
+                <span class="val">{{orderPatient.binrAge}}</span>
+            </span>
+        </div>
+        <div class="padding btn-group">
+            <div class="button-bar bar-light">
+                <a class="button" ng-click="goKaiFang()">线上开方</a>
+                <a class="button" ng-click="doChat()">发起聊天</a>
+                <!-- <a class="button" ng-click="searchPatient()">就诊记录</a> -->
+                <a class="button" href="tel:{{orderPatient.patientAccount}}">拨打电话</a>
+            </div>
+        </div>
+        <!-- 本次就诊预约详情 -->
+        <div class="cflist">
+            <div class="container" style="padding: 0" ng-click="toggleShowYuYue()" style="margin-bottom: 10px;">
+                <h4>
+                    <i class="icon ion-calendar positive"></i> 预约信息
+                    <i ng-if="!isshowYuYue" class="toggle icon ion-chevron-up"></i>
+                    <i ng-if="isshowYuYue" class="toggle icon ion-chevron-down"></i>
+                </h4>
+            </div>
+            <div class="container" ng-if="isshowYuYue">
+                <div class="item-sub">
+                    <div class="row">
+                        <div class="text-key">
+                            预约名称：</div>
+                        <div class="text-value">
+                            {{orderPatient.name}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-key">
+                            预约门店：</div>
+                        <div class="text-value">
+                            {{orderPatient.orgFullText}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-key">
+                            预约诊金：</div>
+                        <div class="text-value" style="color: darkred">
+                            {{orderPatient.amount}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-key">
+                            就诊次数：</div>
+                        <div class="text-value">
+                            {{orderPatient.times|str}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-key">
+                            预约状态:</div>
+                        <div class="text-value">
+                            <span ng-if="orderPatient.payStatus==1">
+                                <img style="width: 60px;" src="./assets/img/pay.png">
+                            </span>
+                            <span ng-if="orderPatient.payStatus==0">
+                                <img style="width: 60px;" src="./assets/img/noPay.png">
+                            </span>
+                            <span ng-if="orderPatient.payStatus==2">
+                                <img style="width: 60px;" src="./assets/img/refunds.png">
+                            </span>
+                            <span ng-if="orderPatient.payStatus==-2" class="assertive"> {{orderPatient.payStatusText|str}} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 本次就诊患者详情 -->
+        <div class="cflist">
+            <div class="container" style="padding: 0" ng-click="toggleShowPerson()" style="margin-bottom: 10px;">
+                <h4>
+                    <i class="icon ion-person positive"></i> 患者信息
+                    <i ng-if="!isshowPerson" class="toggle icon ion-chevron-up"></i>
+                    <i ng-if="isshowPerson" class="toggle icon ion-chevron-down"></i>
+                </h4>
+            </div>
+            <div class="container" ng-if="isshowPerson">
+                <div class="item-sub">
+                    <div class="row">
+                        <div class="text-key">
+                            病情描述：</div>
+                        <div class="text-value">
+                            {{sickMsg|str}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-key">
+                            检 查 单:</div>
+                        <div class="text-value" ng-if="sickMsgImgList1==0">- -</div>
+                    </div>
+                    <div class="sickMsgImgList" ng-if="sickMsgImgList1>0">
+                            <a href="{{vo}}"><img ng-repeat="vo in sickMsgImgList1" ion-img  ngsrc="{{vo}}"></a> 
+                    </div>
+
+                    <div class="row">
+                        <div class="text-key">
+                            舌 像:</div>
+                        <div class="text-value" ng-if="sickMsgImgList2==0">- -</div>
+                    </div>
+                    <div class="sickMsgImgList" ng-if="sickMsgImgList1>0">
+                            <a href="{{vo}}"> <img ng-repeat="vo in sickMsgImgList2" ion-img ngsrc="{{vo}}"></a> 
+                    </div>
+
+
+                    <div class="row">
+                        <div class="text-key">
+                            其 他:</div>
+                        <div class="text-value" ng-if="sickMsgImgList3==0">- -</div>
+                    </div>
+                    <div class="sickMsgImgList" ng-if="sickMsgImgList1>0">
+                            <a href="{{vo}}"><img ng-repeat="vo in sickMsgImgList3" ion-img ngsrc="{{vo}}"></a> 
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- 本次就诊处方详情 -->
+        <div class="cflist">
+            <div class="container" style="padding: 0" ng-click="toggle()">
+                <h4>
+                    <i class="icon ion-medkit" style="color:#ae7649;"></i> 处方信息
+                    <i ng-if="!isshowcf" class="toggle icon ion-chevron-up"></i>
+                    <i ng-if="isshowcf" class="toggle icon ion-chevron-down"></i>
+                </h4>
+            </div>
+            <div class="container" ng-if="isshowcf&&chufangList.length>0">
+                <div class="item-sub">
+                    <div class="row">
+                        <div class="text-key">
+                            工作室：</div>
+                        <div class="text-value"> {{chufangList[0].deptName}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="text-key">
+                            开方医生：</div>
+                        <div class="text-value">
+                            {{chufangList[0].operName}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="text-key">
+                            病历：</div>
+                        <div class="text-value">
+                            {{chufangList[0].blRecord|str}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-key">
+                            西医诊断①：</div>
+                        <div class="text-value">
+                            {{chufangList[0].icdName|str}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-key">
+                            西医诊断②：</div>
+                        <div class="text-value">
+                            {{chufangList[0].icdName1|str}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-key">
+                            中医诊断：</div>
+                        <div class="text-value">
+                            {{chufangList[0].icdName2|str}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-key">
+                            症状：</div>
+                        <div class="text-value">
+                            {{chufangList[0].icdName3|str}}
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="text-key">
+                            总 金 额:</div>
+                        <div class="text-value">
+                            <span style="color: darkred">{{(CFsum+orderPatient.amount)|number:2}}</span>(诊金:{{orderPatient.amount}},处方:{{CFsum|number:2}})</div>
+                    </div>
+                    <!--   <div class="row">
+                <div class="text-key">
+                    支付状态：</div>
+                <div class="text-value">
+                    {{payStatusText}}
+                </div>
+            </div> -->
+                    <span class="pay_tip_sdf" ng-if="payStatusText=='已支付 '">
+                        <img style="width: 60px;" src="./assets/img/pay.png">
+                    </span>
+                    <span class="pay_tip_sdf" ng-if="payStatusText=='待支付'">
+                        <img style="width: 60px;" src="./assets/img/noPay.png">
+                    </span>
+                    <span class="pay_tip_sdf" ng-if="payStatusText=='已退款'">
+                        <img style="width: 60px;" src="./assets/img/refunds.png">
+                    </span>
+                    <!-- <div class="row">
+                        <button ng-if="wxOrderId" ng-click="goOrderDetail(wxOrderId)" class="btn-order">查看相关订单</button>
+                        <span style="color: #f76260" ng-if="!wxOrderId">该处方暂无相关订单!</span>
+                    </div> -->
+                    <!--<div class="row">
+                <div class="text-key">
+                    处方操作医生：</div>
+                <div class="text-value">
+                    {{chufangList[0].confirmOperaName}}
+                </div>
+            </div> -->
+                    <div class="row">
+                        <div class="text-key">
+                            就诊次数:</div>
+                        <div class="text-value">
+                            {{chufangList[0].times}}
+                        </div>
+                    </div>
+                    <div class="row-cf-main" ng-repeat="items in arraylist">
+                        <div class="row">
+                            <span class="sub">
+                                <span class="span-key">处方序号:</span>
+                                <span class="span-value">{{items['list'][0].prescriptionSn-1}}</span>
+                            </span>
+                            <span class="sub" style="margin-left:50px;">
+                                <span class="span-key">处方付数:</span>
+                                <span class="span-value">{{items['list'][0].herbalAmount|number:0}}</span>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="text-key">
+                                处方备注：</div>
+                            <div class="text-value" ng-show="items['presContent']">
+                                {{items['presContent']}}
+                            </div>
+                            <div class="text-value" ng-show="!items['presContent']">
+                                未填写
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="text-key">
+                                处方金额：</div>
+                            <div class="text-value" ng-show="items['sum']">
+                                {{items['sum']|number:2}}元
+                            </div>
+                        </div>
+                        <div class="row-cf">
+                            <table>
+                                <tr>
+                                    <td>药品名称</td>
+                                    <td>数量</td>
+                                    <!-- <td>单价</td> -->
+                                    <td>用法</td>
+                                    <td>特殊用法</td>
+                                </tr>
+                                <tr ng-repeat="item in items['list']">
+                                    <td>{{item.chargeName}}</td>
+                                    <td ng-show="item.chargeAmount">{{item.chargeAmount|number:2}}</td>
+                                    <td ng-show="!item.chargeAmount">-</td>
+                                    <!-- <td>{{item.chargePrice|number:2}}</td> -->
+                                    <td>{{item.supplyName}}</td>
+                                    <td ng-if="item.comment">{{item.comment}}</td>
+                                    <td ng-if="!item.comment">-</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <button class="button button-balanced button-small" ng-click="addCfTpl(items['list'][0])">存为处方模板</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" ng-if="isshowcf&&chufangList.length==0">
+                <div class="padding">
+                    <div class="text-center">
+                        <span class="assertive " style="text-align: center;">:( 本次就诊暂无处方信息</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 本次就诊 -->
+    </div>
+</ion-content>
+
+

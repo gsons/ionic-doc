@@ -1,0 +1,127 @@
+<div class="bar bar-header has-tabs-top bar-stable ">
+    <button ng-click="$back()" class="button back-button button-stable buttons button-clear  header-item">
+        <i class="icon ion-android-arrow-back"></i>
+        <span class="back-text" style=""></span>
+    </button>
+
+    <div class="h1 title">医生信息</div>
+
+    <button ng-click="submit()" class="button  button-positive button-small header-item">
+        <span class="back-text">保存</span>
+    </button>
+
+</div>
+<div class="page-drlist tabs-striped tabs-top tabs-background-stable tabs-color-positive">
+    <div class="tabs">
+        <a class="tab-item" ng-class="{'active':showItem==1}" href="javascript:;" ng-click="toggleShow(1)">
+            基本信息①
+        </a>
+        <a class="tab-item" ng-class="{'active':showItem==2}" href="javascript:;" ng-click="toggleShow(2)">
+            基本信息②
+        </a>
+        <a class="tab-item" ng-class="{'active':showItem==3}" href="javascript:;" ng-click="toggleShow(3)">
+            基本信息③
+        </a>
+    </div>
+</div>
+<ion-content on-swipe-left="swipe(1)" on-swipe-right="swipe(-1)" delegate-handle="docInfo-scroll" class="has-tabs-top page-docInfo">
+    <div class="list">
+        <form name="form">
+            <div class="list1" ng-show="showItem==1">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">姓名</span>
+                    <input type="text" ng-model="vo.name" placeholder="(选填)姓名">
+                </label>
+
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">出生日期</span>
+                    <input type="date" ng-model="vo.birthday" placeholder="(选填)出生日期">
+                </label>
+
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">手机号码</span>
+                    <input type="text" ng-model="vo.phone" placeholder="(选填)手机号码" ng-maxlength="11" ng-minlength="11">
+                </label>
+                <div class="item">
+                    <div>
+                        <span>性别</span>
+                    </div>
+                    <label for="sex1" class="myRadio">
+                        <input name="sex" type="radio" ng-model="vo.sex" value="男" id="sex1">
+                        <span style="border-right: 0">男</span>
+                    </label>
+                    <label for="sex2" class="myRadio">
+                        <input name="sex" type="radio" ng-model="vo.sex" value="女" id="sex2">
+                        <span>女</span>
+                    </label>
+                </div>
+            </div>
+            <div class="list2" ng-show="showItem==2">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">身份证号码</span>
+                    <input type="text" ng-model="vo.idcard" placeholder="(选填)身份证号码">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">个人邮箱</span>
+                    <input type="text" ng-model="vo.email" placeholder="(选填)个人邮箱">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">联系地址</span>
+                    <input type="text" ng-model="vo.homeaddress" placeholder="(选填)联系地址">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">擅长</span>
+                    <input type="text" ng-model="vo.skills" placeholder="(选填)擅长">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label"> 个人介绍:</span>
+                    <textarea placeholder="(选填)个人介绍" ng-model="vo.profiles"></textarea>
+                </label>
+            </div>
+            <div class="list3" ng-show="showItem==3">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">所属医院</span>
+                    <input type="text" placeholder="(必填)所属医院" ng-model="vo.hospitalname">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">专业技术资格</span>
+                    <input type="text" placeholder="(选填)专业技术资格,多个可用,隔开" ng-model="vo.technical">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">执业地点</span>
+                    <input type="text" ng-model="vo.skills" placeholder="(选填)执业地点" ng-model="vo.practiceplace">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label"> 执业范围:</span>
+                    <textarea placeholder="(选填)执业范围,多个可用,隔开" ng-model="vo.practicearea"></textarea>
+                </label>
+                <label class="item item-input item-stacked-label" ng-click="modal.show()">
+                    <span class="input-label" style="width: 40px;">科室:</span>
+                    <span class="button-small button button-dark">{{deptNames}}</span>
+                </label>
+                <label class="item  item-input-inset item-select">
+                    <span class="input-label"> 职称:</span>
+                    <select ng-model="vo.profession" name="profession" required="">
+                        <option ng-repeat="v in professionList" value="{{v.code}}" ng-selected='v.code==vo.profession'>{{v.name}}</option>
+                    </select>
+                </label>
+            </div>
+        </form>
+    </div>
+</ion-content>
+
+
+<script id="deptModal.html" type="text/ng-template">
+    <ion-modal-view>
+            <ion-header-bar class="bar bar-header">
+                    <h1 class="title">选择科室(多选)</h1>
+                <button class="button button-clear button-small button-positive" ng-click="modal.hide()">关闭</button>
+            </ion-header-bar>
+            <ion-content class="has-header has-footer" delegate-handle="dataScroll">
+                    <ul class="list padding"><ion-checkbox ng-repeat="vo in $parent.depts" ng-model="vo.checked" ng-checked="vo.checked">{{vo.name}}</ion-checkbox></ul>
+            </ion-content>
+        <div class="bar bar-footer">
+                <button class="button  button-small button-positive" ng-click="editDept()" style="width:100%">确定</button>
+              </div>
+        </ion-modal-view>
+    </script>

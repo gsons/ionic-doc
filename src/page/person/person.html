@@ -1,0 +1,46 @@
+<ion-header-bar>
+     <!-- <button ng-click="$refresh()" class="button button-stable button-clear"><i class="icon ion-android-refresh"></i>
+  </button> -->
+  <h1 class="title" align-title="center">个人中心</h1>
+   <button ng-click="logout()" class="button button-stable button-clear"><i class="icon ion-power"></i>
+  </button>
+</ion-header-bar>
+<ion-content class="has-tabs page-person" >
+    <div class="list">
+    <div class="head">
+        <img ngsrc="{{avatarurl}}" ion-img>
+        <div><p>{{doc.name}}({{doc.professionText}})</p></div>
+    </div>
+
+        <a class="button-block button button-small button-app" ui-sref="app.docInfo">医 生 信 息</a>
+        <a class="button-block button button-small button-app" ui-sref="app.studioInfo">我的工作室</a>
+        <a class="button-block button button-small button-app" ui-sref="app.income">我 的 收 益</a>
+        <a class="button-block button button-small button-app" ui-sref="app.followUp">随访通知设置</a>
+        <a class="button-block button button-small button-app" ui-sref="app.workIncome">提成与营业收益</a>
+        <a class="button-block button button-small button-app" ui-sref="app.resetPass">修 改 密 码</a>
+        <a class="button-block button button-small button-app" ng-click="bingWeixin()">微 信 绑 定</a>
+    </div>
+ 
+ <div class="padding text-center">
+          <span class="light">
+             程序版本 {{$version}}
+          </span>
+ </div>
+
+</ion-content>
+
+<ion-tabs class="tabs-light tabs-icon-top">
+  <a class="tab-item " href="#/app/main" act="/app/main">
+    <i class="icon ion-ios-home"></i>
+    主页
+  </a>
+   <a class="tab-item " href="#/app/drlist" act="/app/drlist">
+<i class="icon ion-chatbubbles"></i>
+    消息
+      <i class="badge badge-assertive" ng-show="$NoReadNum>0">{{$NoReadNum}}</i>
+  </a>
+  <a class="tab-item positive" href="#/app/person" act="/app/person">
+  <i class="icon ion-person"></i>
+    个人
+  </a>
+</ion-tabs>

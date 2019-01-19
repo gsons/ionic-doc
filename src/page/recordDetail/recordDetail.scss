@@ -1,0 +1,143 @@
+.page-recordDetail {
+    // background-color: #FFF;
+
+    .binren {
+        height: 50px;
+        line-height: 50px;
+        background-color: #f1f0ef;
+
+        img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+            margin: 0px 10px;
+        }
+
+        span.key {
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        span.val {
+            color: #ae7649;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+    }
+
+    .btn-group{
+         background: #FFF;
+         a.button{
+            min-height: 30px;
+            line-height: 35px;
+            color: #ae7649;
+                border-color: #ae7649;
+         }
+    }
+
+    .cflist {
+        margin-bottom: 10px;
+        .container {
+            position: relative;
+            padding: 0 10px;
+            font-size: 14px;
+        }
+
+        .pay_tip_sdf {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+        .item-sub {}
+
+        h4 {
+            font-size: 15px;
+            padding: 10px;
+            font-weight: bold;
+            margin: 0;
+            background: #DDD;
+            border-radius: 2px;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .row {
+            clear: both;
+            margin: 3px 0;
+        }
+
+        .row-cf {
+            clear: both;
+            margin: 5px 0;
+            padding-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        table td {
+            border: 1px solid #bbb;
+            color: green;
+            padding: 3px;
+            text-align: center;
+        }
+
+        .text-key {
+            font-weight: bold;
+            width: 30%;
+            color: #333;
+        }
+
+        .text-value {
+            width: 70%;
+            /*color: #999;*/
+            color: green;
+        }
+
+        .sub {
+            margin-right: 10px;
+        }
+
+        .span-key {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .div-key {
+            color: #000;
+        }
+
+        .span-value {
+            color: green;
+        }
+
+        .row-cf-main {
+            background-color: #FFF;
+            // border-radius: 5px;
+            border: 1px solid #60c360;
+        }
+
+        i.toggle {
+            float: right;
+            color: #fff;
+        }
+
+        .btn-order {
+            border-radius: 4px;
+            border: 1px #f1f0ef solid;
+            height: 30px;
+            color: #FFF;
+            background-color: #60c360;
+        }
+    }
+    .sickMsgImgList{
+        img{
+            max-width: 90px;
+        }
+        a{
+            margin: 5px;
+        }
+    }
+}
